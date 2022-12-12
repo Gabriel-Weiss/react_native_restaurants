@@ -1,20 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from "react";
+import { Ionicons } from "@expo/vector-icons";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import { Home } from "./src/screens/Home";
+import { Selected } from "./src/screens/Selected";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home Screen"
+          component={Home}
+          options={{
+            headerTitle: () => (
+              <Ionicons name="restaurant-outline" size={40} color="#660066" />
+            ),
+            headerTitleAlign: "center",
+          }}
+        />
+        <Stack.Screen
+          name="Restaurant"
+          component={Selected}
+          options={{
+            headerTitleStyle: { fontWeight: "bold", color: "white" },
+            headerStyle: { backgroundColor: "#660066" },
+            headerTitleAlign: "center",
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
