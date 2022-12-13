@@ -26,7 +26,7 @@ export const Home = () => {
       <View style={styles.lowerSide}>
         <Restaurants selected={selected} />
       </View>
-      <StatusBar style="auto" />
+      <StatusBar />
     </View>
   );
 };

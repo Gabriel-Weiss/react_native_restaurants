@@ -1,5 +1,6 @@
 import axios from "../api/axios";
 import { useState } from "react";
+import useExpoLocationHook from "./useExpoLocationHook";
 
 export default () => {
   const [result, setResult] = useState({
@@ -7,6 +8,8 @@ export default () => {
     loading: false,
     error: null,
   });
+  const [{ latitude, longitude }] = useExpoLocationHook();
+  console.log(latitude + "-" + longitude);
 
   const getRestaurants = async (term) => {
     setResult({ data: null, loading: true, error: null });
@@ -14,9 +17,10 @@ export default () => {
     try {
       const response = await axios.get("/search", {
         params: {
-          limit: 15,
           term,
-          location: "Toronto",
+          latitude,
+          longitude,
+          limit: 15,
         },
       });
       setResult({

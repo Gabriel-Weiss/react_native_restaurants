@@ -7,7 +7,12 @@ export const Restaurant = ({ restaurant }) => {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("Restaurant", { id: restaurant.id })}
+      onPress={() =>
+        navigation.navigate("Restaurant", {
+          id: restaurant.id,
+          name: restaurant.name,
+        })
+      }
     >
       <View style={styles.container}>
         <Image style={styles.image} source={{ uri: restaurant.image_url }} />

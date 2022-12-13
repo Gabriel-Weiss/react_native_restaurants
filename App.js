@@ -11,25 +11,27 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{}}>
         <Stack.Screen
           name="Home Screen"
           component={Home}
-          options={{
+          options={() => ({
             headerTitle: () => (
               <Ionicons name="restaurant-outline" size={40} color="#660066" />
             ),
+            headerStyle: { backgroundColor: "#f3f3f3" },
             headerTitleAlign: "center",
-          }}
+          })}
         />
         <Stack.Screen
           name="Restaurant"
           component={Selected}
-          options={{
+          options={({ route }) => ({
+            headerTitle: route.params.name,
             headerTitleStyle: { fontWeight: "bold", color: "white" },
             headerStyle: { backgroundColor: "#660066" },
             headerTitleAlign: "center",
-          }}
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>
